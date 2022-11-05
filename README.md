@@ -32,3 +32,10 @@ npm run build
 ```
 npm run lint
 ```
+
+### Tests
+```
+npm install @vue/cli-plugin-unit-jest
+npx vue add unit-jest
+```
+
