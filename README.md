@@ -37,5 +37,14 @@ npm run lint
 ```
 npm install @vue/cli-plugin-unit-jest
 npx vue add unit-jest
+npm i flush-promises -D
+
+npm run test:unit
+
+# Pour lancer les tests en mode watch
+npm run test:unit -- --watch
+
+```
+
 ```
 

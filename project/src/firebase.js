@@ -6,7 +6,7 @@ import "firebase/firestore";
 import "firebase/storage";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-var firebaseConfig = {
+let firebaseConfig = {
   apiKey: "AIzaSyAMkaihJke4UKHxc6_Phhc0nARwumvJh6I",
   authDomain: "polytech-test-and-security.firebaseapp.com",
   databaseURL: "https://polytech-test-and-security.firebaseio.com",

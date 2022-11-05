@@ -24,7 +24,7 @@
         <br />
       </div>
     </div>
-    <button @click="login()" class="button">Se connecter</button>
+    <button @click="login()" class="button" id="connection-button">Se connecter</button>
     <!-- <div class="extras">
       Vous n'avez pas de compte ? <a @click="toggleForm()">Créez-en un !</a>
     </div> -->

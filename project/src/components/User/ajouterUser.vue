@@ -67,7 +67,7 @@
               <div class="field has-text-left">
                 <label class="label">Role* :</label>
                 <div class="control">
-                  <label for="Administrateur"
+                  <label for="role-admin"
                     ><input
                       type="radio"
                       id="role-admin"
@@ -77,7 +77,7 @@
                     Administrateur</label
                   >
                   <br />
-                  <label for="Emprunteur"
+                  <label for="role-other"
                     ><input
                       type="radio"
                       id="role-other"
@@ -252,13 +252,14 @@ export default {
           .get()
           .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
-              // doc.data() is never undefined for query doc snapshots
-              (dDoc = doc.id), " => ", doc.data();
+              dDoc = doc;
             });
             if (dDoc === null) {
               _this.isLoading = true;
-              let adminPW = _this.$store.state.userProfile.password;
-              let adminEdmail = _this.$store.state.userProfile.email;
+              //let adminPW = _this.$store.state.userProfile.password;
+              let adminPW = _this.signupForm.password;
+              //let adminEdmail = _this.$store.state.userProfile.email;
+              let adminEdmail = _this.signupForm.email;
 
               _this.$store.dispatch("logout");
 
