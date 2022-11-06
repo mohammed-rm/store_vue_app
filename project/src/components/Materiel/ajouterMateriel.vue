@@ -102,7 +102,7 @@
         <div class="modal-footer">
           <slot name="footer">
             <div class="control">
-              <button class="button is-primary" @click="createDoc()">
+              <button id="create-eq" class="button is-primary" @click="createDoc()">
                 Submit
               </button>
             </div>

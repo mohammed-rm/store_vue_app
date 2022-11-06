@@ -4,7 +4,7 @@
     <br />
     <div class="columns">
       <div class="column has-text-right">
-        <label for="email">Email</label><br />
+        <label for="email1">Email</label><br />
         <label for="password1">Password</label> <br />
       </div>
       <div class="column has-text-left">
@@ -56,8 +56,10 @@ export default {
           email: this.loginForm.email,
           password: this.loginForm.password
         })
-        .then(function() {
-          _this.$router.push("/");
+        .then(() => {
+          _this.$router.push({
+            name: "Home"
+          });
         })
         .catch(function(error) {
           console.log(error);

@@ -59,7 +59,7 @@
                   >{{ this.userProfile.forname }} 👤
                 </router-link>
               </div>
-              <button class="navbar-item button is-danger" @click="logout()">
+              <button class="navbar-item button is-danger" id="log-out" @click="logout()">
                 Log Out
               </button>
             </div>

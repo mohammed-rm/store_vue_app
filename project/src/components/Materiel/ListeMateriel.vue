@@ -1,91 +1,93 @@
 <template>
   <div class="liste-materiel">
-    <Loading v-show="isAllDocumentLoading" />
+    <Loading v-show="isAllDocumentLoading"/>
     <table
-      class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+        id="eq-list"
+        class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
     >
       <thead>
-        <tr>
-          <th v-if="userProfile.isAdmin" style="border: none;"></th>
-          <th><abbr title="Position">Index</abbr></th>
-          <th>Nom</th>
-          <th>Référence</th>
-          <th>N° Téléphone</th>
-          <th>Version</th>
-          <th>Photo</th>
-        </tr>
+      <tr>
+        <th v-if="userProfile.isAdmin" style="border: none;"></th>
+        <th><abbr title="Position">Index</abbr></th>
+        <th>Nom</th>
+        <th>Référence</th>
+        <th>N° Téléphone</th>
+        <th>Version</th>
+        <th>Photo</th>
+      </tr>
       </thead>
       <tbody>
-        <tr
+      <tr
           v-for="(materiel, index) in materiels"
           :key="index"
           :class="'is-clickable row_' + index"
-        >
-          <td
+      >
+        <td
+            :id="'delete_' + index"
             v-if="userProfile.isAdmin"
             style="vertical-align:middle;border: none;"
             @click="deletionVerif(materiel.id, materiel.image_name)"
-          >
-            <SpinnerDelete />
-          </td>
-          <td
+        >
+          <SpinnerDelete/>
+        </td>
+        <td
             @click="goToMaterial(materiel.id, materiel)"
             style="vertical-align:middle;"
-          >
-            {{ index + 1 }}
-            <span
+        >
+          {{ index + 1 }}
+          <span
               v-if="isMaterielAvailable(materiel.reservedDates)"
               class="tag is-success"
-              >Disponible</span
-            >
-            <span v-else class="tag is-danger">Indisponible</span>
-          </td>
-          <td
+          >Disponible</span
+          >
+          <span v-else class="tag is-danger">Indisponible</span>
+        </td>
+        <td
             @click="goToMaterial(materiel.id, materiel)"
             style="vertical-align:middle;"
-          >
-            {{ materiel.nom }}
-          </td>
-          <td
+        >
+          {{ materiel.nom }}
+        </td>
+        <td
             @click="goToMaterial(materiel.id, materiel)"
             style="vertical-align:middle;"
-          >
-            {{ materiel.ref }}
-          </td>
-          <td
+        >
+          {{ materiel.ref }}
+        </td>
+        <td
             @click="goToMaterial(materiel.id, materiel)"
             style="vertical-align:middle;"
-          >
-            {{ !isNaN(materiel.tel) ? "+33(0) " + materiel.tel : "Indéfini" }}
-          </td>
-          <td
+        >
+          {{ !isNaN(materiel.tel) ? "+33(0) " + materiel.tel : "Indéfini" }}
+        </td>
+        <td
             @click="goToMaterial(materiel.id, materiel)"
             style="vertical-align:middle;"
-          >
-            {{
-              materiel.version.startsWith("V")
+        >
+          {{
+            materiel.version.startsWith("V")
                 ? materiel.version
                 : "V" + materiel.version
-            }}
-          </td>
-          <td
+          }}
+        </td>
+        <td
             @click="goToMaterial(materiel.id, materiel)"
             class="is-clickable"
             style="vertical-align:middle;"
-          >
-            <a v-if="materiel.photo != ''" :href="materiel.photo">
-              <v-img
+        >
+          <a v-if="materiel.photo != ''" :href="materiel.photo">
+            <v-img
                 :src="materiel.photo"
                 alt=""
                 contain
                 height="66px"
                 width="100px"
-              >
-              </v-img>
-            </a>
-            <span v-else>Pas d'image.</span>
-          </td>
-        </tr>
+            >
+            </v-img>
+          </a>
+          <span v-else>Pas d'image.</span>
+        </td>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -96,12 +98,12 @@ import firebase from "@/firebase.js";
 import Loading from "@/components/Utils/Loading";
 import SpinnerDelete from "@/components/Utils/SpinnerDelete";
 import moment from "moment";
-import { mapState } from "vuex";
+import {mapState} from "vuex";
 
 export default {
   name: "ListeMateriel",
   props: {},
-  components: { Loading, SpinnerDelete },
+  components: {Loading, SpinnerDelete},
   data() {
     return {
       isAllDocumentLoading: false
@@ -114,7 +116,7 @@ export default {
     goToMaterial(keyDoc, docDatas) {
       this.$router.push({
         name: "Materiel",
-        params: { id: keyDoc, oDatas: docDatas }
+        params: {id: keyDoc, oDatas: docDatas}
       });
     },
     deletionVerif(keyDoc, keyImage) {
@@ -126,27 +128,27 @@ export default {
       if (keyImage != "") {
         let storageRef = firebase.storage.ref("Photo_Materiel/" + keyImage);
         firebase.db
-          .collection("materiel")
-          .doc(keyDoc)
-          .delete()
-          .then(function() {
-            storageRef
-              .delete()
-              .then(function() {
-                alert("Document successfully deleted!");
-              })
-              .catch(function(error) {
-                console.log("Error removing document: ", error);
-              });
-          })
-          .catch(function(error) {
-            console.log("Error removing document: ", error);
-          });
+            .collection("materiel")
+            .doc(keyDoc)
+            .delete()
+            .then(function () {
+              storageRef
+                  .delete()
+                  .then(function () {
+                    alert("Document successfully deleted!");
+                  })
+                  .catch(function (error) {
+                    console.log("Error removing document: ", error);
+                  });
+            })
+            .catch(function (error) {
+              console.log("Error removing document: ", error);
+            });
       } else {
         firebase.db
-          .collection("materiel")
-          .doc(keyDoc)
-          .delete();
+            .collection("materiel")
+            .doc(keyDoc)
+            .delete();
       }
 
       this.$store.dispatch("getAllDocsFromCollection", "materiel");

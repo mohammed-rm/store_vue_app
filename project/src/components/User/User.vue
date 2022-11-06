@@ -93,8 +93,8 @@
               </div>
             </div>
             <div class="has-text-left">
-              <label for="role"><strong> Rôle : </strong></label>
-              <select v-if="dUser.isAdmin" name="role" id="role-selector">
+              <label for="role-selector_"><strong> Rôle : </strong></label>
+              <select v-if="dUser.isAdmin" name="role" id="role-selector_">
                 <option value="admin">Administrateur</option>
                 <option value="user">Emprunteur</option>
               </select>
@@ -135,9 +135,9 @@ export default {
   data() {
     return {
       isLoading: false,
-      dUser: this.oDatas != undefined ? this.oDatas : "",
+      dUser: this.oDatas !== undefined ? this.oDatas : "",
       isEditting: false,
-      paramId: this.id != undefined ? this.id : this.$route.params.id,
+      paramId: this.id !== undefined ? this.id : this.$route.params.id,
       isFormNameCorrect: true,
       formNameError: "Erreur : le nom que vous avez renseigné est incorrect.",
       isFormFornameCorrect: true,
@@ -159,7 +159,7 @@ export default {
     },
     loadDocIfDirectSearch: async function(collection, id) {
       this.isLoading = true;
-      if (this.oDatas == undefined) {
+      if (this.oDatas === undefined) {
         let uniqDoc = firebase.db.collection(collection).doc(id);
         let dData = await uniqDoc.get();
         this.dUser = dData.data();
@@ -190,7 +190,7 @@ export default {
       let sRole = document.getElementById("role-selector").value;
       let bRole = this.dUser.isAdmin;
 
-      if (sRole != this.dUser.isAdmin) {
+      if (sRole !== this.dUser.isAdmin) {
         if (
           confirm(
             "Vous êtes sur le point de changer le role de cet utilisateur. \nÊtes-vous sûr ?"
