@@ -2,16 +2,18 @@ describe('Create a new equipment using admin account', () => {
 
     beforeEach(() => {
         cy.visit('http://localhost:8080/login')
-        cy.get('#email1').type('senior@gmail.com')
-        cy.get('#password1').type('senior')
+        cy.get('#email1').type('admindev@gmail.com')
+        cy.get('#password1').type('admindev')
         cy.get('#connection-button').click()
         cy.url().should('include', '/')
     })
 
     afterEach(() => {
-        cy.contains('tr', 'test_fake_phone').invoke('index').then((i) => {
-            cy.get(`#delete_${i}`).should('be.visible').click()
-        })
+        cy.contains('tr', 'test_fake_phone')
+            .invoke('index')
+            .then((index) => {
+                cy.get(`#delete_${index}`).should('be.visible').click()
+            })
     })
 
     it('should add a new equipment', function () {
@@ -21,6 +23,7 @@ describe('Create a new equipment using admin account', () => {
         cy.get('#new-material-version').type('V1523')
         cy.get('#ref-select').select('apple')
         cy.get('#create-eq').click()
+
         cy.get('#eq-list').contains('test_fake_phone')
         cy.get('#eq-list').contains('+33(0) 632895410')
         cy.get('#eq-list').contains('V1523')
@@ -28,11 +31,11 @@ describe('Create a new equipment using admin account', () => {
     })
 })
 
-describe('Create a new equipment using borrower account', () => {
+describe('Attempt to create a new equipment using borrower account', () => {
     beforeEach(() => {
         cy.visit('http://localhost:8080/login')
-        cy.get('#email1').type('junior@gmail.com')
-        cy.get('#password1').type('junior')
+        cy.get('#email1').type('usertest@gmail.com')
+        cy.get('#password1').type('usertest')
         cy.get('#connection-button').click()
         cy.url().should('include', '/')
     })
