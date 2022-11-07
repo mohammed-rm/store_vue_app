@@ -27,7 +27,7 @@
         class="navbar-menu"
         style="padding-bottom: 1em;"
       >
-        <div class="navbar-start">
+        <div class="navbar-start" id="nav-list">
           <router-link class="navbar-item" to="/">Home</router-link>
           <router-link v-if="showIfAdmin" class="navbar-item" to="/admin"
             >Administration</router-link
