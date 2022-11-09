@@ -12,35 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Use Node.js 12.x
-          uses: actions/setup-node@v1
-          with:
-          node-version: 12.x
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18
 
       - name: Move to project directory
           run: cd project
 
       - name: Install dependencies
-          run: npm install
+          run: npm ci
 
       - name: Build
           run: npm run build
 
       - name: Run server
-                - run: npm run serve
+          run: npm run serve
 
-      - name: Run Cypress Test
-          uses: cypress-io/github-action@v2
-          with:
-          start: npm run serve
-          wait-on: 'http://localhost:8080'
-          wait-on-timeout: 60
-          record: true
-          parallel: true
-          group: 'Github Actions'
-          spec: 'cypress/e2e/**/*.cy.js'
-          # env: 'CYPRESS_BASE_URL=http://localhost:8080'
-          browser: chrome
-          tag: 'github-action'
-          config-file: 'cypress.config.js'
+
