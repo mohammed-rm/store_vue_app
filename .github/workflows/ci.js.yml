@@ -26,6 +26,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: cd ~/project
+      - run: cd /home/runner/work/store_vue_app/store_vue_app/project
       - run: npm ci
 
