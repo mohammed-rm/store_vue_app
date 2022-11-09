@@ -30,10 +30,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      # - run: cd /home/runner/work/store_vue_app/store_vue_app/project
-      - run: npm ci
-      # - run: npm run build
-      # - run: npm run serve
-      - run: npx cypress run
+
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: ./project
+          install-command: npm install
+          start: npm run serve
 
 
