@@ -33,7 +33,7 @@ jobs:
       # - run: cd /home/runner/work/store_vue_app/store_vue_app/project
       - run: npm ci
       # - run: npm run build
-      - run: npm run serve
-      # - run: npx cypress run --record --key 1f9b9c0c-1f9b-4c9b-9c0c-1f9b9c0c1f9b
+      # - run: npm run serve
+      - run: npx cypress run --record --key 1f9b9c0c-1f9b-4c9b-9c0c-1f9b9c0c1f9b
 
 
