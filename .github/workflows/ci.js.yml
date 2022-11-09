@@ -34,9 +34,6 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./project
 
     steps:
       - name: Checkout
@@ -44,7 +41,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          # working-directory: ./project
+          working-directory: project
           install-command: npm install
           start: npm run serve
           runTests: npx cypress run
