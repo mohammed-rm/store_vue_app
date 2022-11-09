@@ -42,5 +42,6 @@ jobs:
           working-directory: ./project
           install-command: npm install
           start: npm run serve
+          test-command: npx cypress run
 
 
