@@ -16,8 +16,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [ 18.x ]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    defaults:
+      run:
+        working-directory: ./project
 
     steps:
       - uses: actions/checkout@v3
@@ -26,6 +30,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: cd /home/runner/work/store_vue_app/store_vue_app/project
+      # - run: cd /home/runner/work/store_vue_app/store_vue_app/project
       - run: npm ci
 
