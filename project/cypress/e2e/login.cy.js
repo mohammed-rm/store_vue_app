@@ -8,7 +8,7 @@ describe('Login page with different credentials', () => {
         cy.get('#email1').should('be.visible')
         cy.get('#password1').should('be.visible')
         cy.get('#connection-button').should('be.visible')
-    })
+    });
 
     it('should log in with valid credentials, and connect user as an admin', () => {
         cy.get('#email1').type('admindev@gmail.com')
@@ -19,7 +19,7 @@ describe('Login page with different credentials', () => {
         cy.get('#connection-button').should('not.exist')
         cy.contains('Log Out').should('be.visible')
         cy.contains('#nav-list', 'Administration').should('exist')
-    })
+    });
 
     it('should log in with valid credentials, and connect user as a borrower with restricted rights', () => {
         cy.get('#email1').type('usertest@gmail.com')
@@ -30,7 +30,7 @@ describe('Login page with different credentials', () => {
         cy.get('#connection-button').should('not.exist')
         cy.contains('Log Out').should('be.visible')
         cy.contains('#nav-list', 'Administration').should('not.exist')
-    })
+    });
 
     it('should not log in with invalid credentials', () => {
         cy.get('#email1').type('invalid@gmail.com')
@@ -39,5 +39,5 @@ describe('Login page with different credentials', () => {
 
         cy.url().should('include', '/login')
         cy.get('#connection-button').should('be.visible')
-    })
+    });
 })

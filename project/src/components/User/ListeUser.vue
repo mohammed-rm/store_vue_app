@@ -21,6 +21,7 @@
           class="is-clickable"
         >
           <td
+              :id="'delete-user_' + index"
             style="vertical-align:middle;border: none;"
             @click="deleteUser(user)"
           >

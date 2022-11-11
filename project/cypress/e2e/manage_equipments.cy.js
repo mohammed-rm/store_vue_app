@@ -20,7 +20,7 @@ describe('Manage equipments', () => {
         cy.get('#eq-list').contains('+33(0) 632895410')
         cy.get('#eq-list').contains('V1523')
         cy.get('#eq-list').contains('Pas d\'image.')
-    })
+    });
 
     it('should not be able to create a new equipment : borrower account', function () {
         // login with borrower account
@@ -30,7 +30,7 @@ describe('Manage equipments', () => {
         cy.get('#connection-button').click()
 
         cy.get('#myModal').should('not.exist')
-    })
+    });
 
     it('should display equipment info when on clicking on a specific equipment : admin account', function () {
         cy.get('#eq-list').contains('td', 'test_fake_phone').click()
@@ -69,7 +69,7 @@ describe('Manage equipments', () => {
 
         cy.get('#eq-list').contains('td', 'test_fake_phone').click()
         cy.contains('Edit').should('not.exist')
-    })
+    });
 
     it('should change equipment properties : admin account', function () {
         // edit equipment
@@ -99,7 +99,7 @@ describe('Manage equipments', () => {
         cy.contains('Version : V2000').should('be.visible')
         cy.contains('N° Téléphone : +33 (0)765894352').should('be.visible')
 
-    })
+    });
 
     it('should delete equipment : admin account', function () {
         cy.contains('tr', 'new_name')
@@ -107,6 +107,6 @@ describe('Manage equipments', () => {
             .then((index) => {
                 cy.get(`#delete_${index}`).should('be.visible').click()
             })
-    })
+    });
 
 })
