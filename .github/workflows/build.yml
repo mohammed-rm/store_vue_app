@@ -13,7 +13,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
-          browser: chromev107
+          browser: chrome
           working-directory: project
           install-command: npm install
           start: npm run serve
