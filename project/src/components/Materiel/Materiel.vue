@@ -197,11 +197,6 @@ export default {
     };
   },
   computed: {
-    showIfAdmin() {
-      return (
-          Object.keys(this.userProfile.isAdmin)
-      );
-    },
     dateRangeText() {
       let dateToReturn = "";
       if (this.dates[0] != "" && this.dates[1] != "")
