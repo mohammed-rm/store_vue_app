@@ -17,6 +17,7 @@ describe('Login page with different credentials', () => {
 
         cy.url().should('include', '/')
         cy.get('#connection-button').should('not.exist')
+        cy.contains('Log Out').should('be.visible')
         cy.contains('#nav-list', 'Administration').should('exist')
     })
 
@@ -27,6 +28,7 @@ describe('Login page with different credentials', () => {
 
         cy.url().should('include', '/')
         cy.get('#connection-button').should('not.exist')
+        cy.contains('Log Out').should('be.visible')
         cy.contains('#nav-list', 'Administration').should('not.exist')
     })
 
