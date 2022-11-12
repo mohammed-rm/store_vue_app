@@ -14,12 +14,13 @@ describe('Manage equipments', () => {
         cy.get('#new-material-tel').type('0632895410')
         cy.get('#new-material-version').type('V1523')
         cy.get('#ref-select').select('apple')
-        cy.get('#create-eq').click()
+        cy.contains('Submit').should('be.visible').click()
+        cy.wait(8000)
 
-        cy.get('#eq-list').contains('test_fake_phone')
-        cy.get('#eq-list').contains('+33(0) 632895410')
-        cy.get('#eq-list').contains('V1523')
-        cy.get('#eq-list').contains('Pas d\'image.')
+        cy.get('tr > td').contains('test_fake_phone')
+        cy.get('tr > td').contains('+33(0) 632895410')
+        cy.get('tr > td').contains('V1523')
+        cy.get('tr > td').contains('Pas d\'image.')
     });
 
     it('should not be able to create a new equipment : borrower account', function () {
@@ -33,7 +34,6 @@ describe('Manage equipments', () => {
     });
 
     it('should display equipment info when on clicking on a specific equipment : admin account', function () {
-        cy.wait(8000)
         cy.get('#eq-list').contains('td', 'test_fake_phone').click()
         cy.contains('Statut : Disponible').should('be.visible')
         cy.contains('Téléphone : test_fake_phone').should('be.visible')
@@ -51,7 +51,6 @@ describe('Manage equipments', () => {
         cy.get('#password1').type('usertest')
         cy.get('#connection-button').click()
 
-        cy.wait(8000)
         cy.get('#eq-list').contains('td', 'test_fake_phone').click()
         cy.contains('Statut : Disponible').should('be.visible')
         cy.contains('Téléphone : test_fake_phone').should('be.visible')
@@ -80,21 +79,18 @@ describe('Manage equipments', () => {
         cy.contains('Edit').should('be.visible').click()
 
         // remove actual inputs
-        cy.get('#input-field-name').clear()
-        cy.get('#input-field-name').type("new_name")
+        cy.get('#input-field-name').clear().type("new_name")
 
-        cy.get('#input-field-ref').clear()
-        cy.get('#input-field-ref').type("AP100")
+        cy.get('#input-field-ref').clear().type("AP100")
 
-        cy.get('#input-field-version').clear()
-        cy.get('#input-field-version').type("V2000")
+        cy.get('#input-field-version').clear().type("V2000")
 
-        cy.get('#input-field-tel').clear()
-        cy.get('#input-field-tel').type("0765894352")
+        cy.get('#input-field-tel').clear().type("0765894352")
 
         // update equipment properties
         cy.contains("Save").should("exist").click()
 
+        cy.wait(8000)
         // check the new changes
         cy.contains('Statut : Disponible').should('be.visible')
         cy.contains('Téléphone : new_name').should('be.visible')
@@ -105,7 +101,6 @@ describe('Manage equipments', () => {
     });
 
     it('should delete equipment : admin account', function () {
-        cy.wait(8000)
         cy.contains('tr', 'new_name')
             .invoke('index')
             .then((index) => {
