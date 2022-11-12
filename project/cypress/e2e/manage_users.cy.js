@@ -4,8 +4,8 @@ describe("Manage users", () => {
 
     beforeEach(() => {
         cy.visit("http://localhost:8080/login")
-        cy.get("#email1").type("help@gmail.com")
-        cy.get("#password1").type("helpme")
+        cy.get("#email1").type("admindev@gmail.com")
+        cy.get("#password1").type("admindev")
         cy.get("#connection-button").click()
         cy.url().should("include", "/")
     })
