@@ -4,15 +4,14 @@ describe("Manage users", () => {
 
     beforeEach(() => {
         cy.visit("http://localhost:8080/login")
-        cy.get("#email1").type("senior@gmail.com")
-        cy.get("#password1").type("senior")
+        cy.get("#email1").type("admindev@gmail.com")
+        cy.get("#password1").type("admindev")
         cy.get("#connection-button").click()
         cy.url().should("include", "/")
         cy.visit("http://localhost:8080/admin")
     })
 
     it("should create a new user : admin account", function () {
-        cy.wait(8000)
         cy.get("#myModal").should("be.visible").click()
         cy.get("#new-user-name").type(`TestUser_${number}`)
         cy.get("#new-user-forname").type(`Account_${number}`)
@@ -22,7 +21,6 @@ describe("Manage users", () => {
         cy.get("#new-user-pw").type("testuseraccount")
         cy.contains("Submit").should("be.visible").click()
 
-        cy.wait(8000)
         cy.visit("http://localhost:8080/admin")
         cy.contains("tr > td", `TestUser_${number}`).should("be.visible")
         cy.contains("tr > td", `Account_${number}`).should("be.visible")
@@ -31,7 +29,6 @@ describe("Manage users", () => {
     });
 
     it("should display user's profile : admin account", function () {
-        cy.wait(8000)
         cy.contains("tr > td", `TestUser_${number}`).should("be.visible").click()
         cy.contains(`Nom : TestUser_${number}`).should("be.visible")
         cy.contains(`Prénom : Account_${number}`).should("be.visible")
@@ -41,7 +38,6 @@ describe("Manage users", () => {
     });
 
     it("should edit created user account : admin account", function () {
-        cy.wait(8000)
         cy.contains("tr > td", `TestUser_${number}`).should("be.visible").click()
         cy.contains("Edit").should("be.visible").click()
         cy.get("#input-field-name").clear().type("TestUserEdited")
@@ -52,7 +48,6 @@ describe("Manage users", () => {
     });
 
     it("should delete user's profile : admin account", function () {
-        cy.wait(8000)
         cy.contains("tr", "TestUserEdited")
             .invoke("index")
             .then((index) => {
