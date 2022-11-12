@@ -33,6 +33,7 @@ describe('Manage equipments', () => {
     });
 
     it('should display equipment info when on clicking on a specific equipment : admin account', function () {
+        cy.wait(8000)
         cy.get('#eq-list').contains('td', 'test_fake_phone').click()
         cy.contains('Statut : Disponible').should('be.visible')
         cy.contains('Téléphone : test_fake_phone').should('be.visible')
@@ -50,6 +51,7 @@ describe('Manage equipments', () => {
         cy.get('#password1').type('usertest')
         cy.get('#connection-button').click()
 
+        cy.wait(8000)
         cy.get('#eq-list').contains('td', 'test_fake_phone').click()
         cy.contains('Statut : Disponible').should('be.visible')
         cy.contains('Téléphone : test_fake_phone').should('be.visible')
@@ -72,6 +74,7 @@ describe('Manage equipments', () => {
     });
 
     it('should change equipment properties : admin account', function () {
+        cy.wait(8000)
         // edit equipment
         cy.get('#eq-list').contains('td', 'test_fake_phone').click()
         cy.contains('Edit').should('be.visible').click()
@@ -102,6 +105,7 @@ describe('Manage equipments', () => {
     });
 
     it('should delete equipment : admin account', function () {
+        cy.wait(8000)
         cy.contains('tr', 'new_name')
             .invoke('index')
             .then((index) => {
